@@ -23,6 +23,7 @@ namespace PlatformService
             services.AddRazorPages();
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseInMemoryDatabase("InMemoryDb"));
+            services.AddScoped<IPlatformRepo, PlatformRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +48,8 @@ namespace PlatformService
             {
                 endpoints.MapRazorPages();
             });
+
+            PrepDb.PrepPopulation(app);
         }
     }
 }
